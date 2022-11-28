@@ -85,11 +85,11 @@ thread servoThread():
       end
 
       q = extrapolate()
-      servoj(q, t=steptime, {{SERVO_J_REPLACE}})
+      servoj(q, t=steptime, lookahead_time=read_input_float_register(24), gain=read_input_integer_register(24))
 
     elif state == SERVO_RUNNING:
       extrapolate_count = 0
-      servoj(q, t=steptime, {{SERVO_J_REPLACE}})
+      servoj(q, t=steptime, lookahead_time=read_input_float_register(24), gain=read_input_integer_register(24))
     else:
       extrapolate_count = 0
       sync()
@@ -197,11 +197,11 @@ thread servoThreadP():
       end
 
       q = extrapolate()
-      servoj(q, t=steptime, {{SERVO_J_REPLACE}})
+      servoj(q, t=steptime, lookahead_time=read_input_float_register(24), gain=read_input_integer_register(24))
 
     elif state == SERVO_RUNNING:
       extrapolate_count = 0
-      servoj(q, t=steptime, {{SERVO_J_REPLACE}})
+      servoj(q, t=steptime, lookahead_time=read_input_float_register(24), gain=read_input_integer_register(24))
     else:
       extrapolate_count = 0
       sync()
