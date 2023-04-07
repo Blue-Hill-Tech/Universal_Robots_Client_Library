@@ -331,9 +331,6 @@ while keepalive > 0 and control_mode > MODE_STOPPED:
       if control_mode == MODE_FORWARD:
         kill thread_trajectory
         clear_remaining_trajectory_points()
-      # Stop freedrive
-      elif control_mode == MODE_FREEDRIVE:
-        end_freedrive_mode()
       end
 
       # If tool is in contact, tool contact should be ended before switching control mode
@@ -384,8 +381,10 @@ while keepalive > 0 and control_mode > MODE_STOPPED:
     elif control_mode == MODE_FREEDRIVE:
       if params_mult[2] == FREEDRIVE_MODE_START:
         freedrive_mode()
+        textmsg("ExternalControl: Entering freedrive")
       elif params_mult[2] == FREEDRIVE_MODE_STOP:
         end_freedrive_mode()
+        textmsg("ExternalControl: Exiting freedrive")
       end
     end
     # Tool contact is running, but hasn't been detected
