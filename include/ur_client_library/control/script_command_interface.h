@@ -81,6 +81,15 @@ public:
   bool setToolVoltage(const ToolVoltage voltage);
 
   /*!
+   * \brief Reset revolution counter.
+   *
+   * \param double Reference revolution joint state 
+   *
+   * \returns True, if the write was performed successfully, false otherwise.
+   */
+  bool resetRevolutionCounter(const double reference_joint);
+
+  /*!
    * \brief Returns whether a client/robot is connected to this server.
    */
   bool clientConnected();
@@ -102,6 +111,7 @@ private:
     ZERO_FTSENSOR = 0,     ///< Zero force torque sensor
     SET_PAYLOAD = 1,       ///< Set payload
     SET_TOOL_VOLTAGE = 2,  ///< Set tool voltage
+    RESET_REVOLUTION_COUNTER = 3,   ///< Reset revolution counter
   };
 
   bool client_connected_;

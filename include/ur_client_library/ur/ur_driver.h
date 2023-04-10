@@ -253,6 +253,16 @@ public:
   bool setToolVoltage(const ToolVoltage voltage);
 
   /*!
+   * \brief Reset revolution counter. Note: It requires the external control script to be running or the robot to be in
+   * headless mode.
+   *
+   * \param double reference revolution joint.
+   *
+   * \returns True on successful write.
+   */
+  bool resetRevolutionCounter(const double reference_revolution_joint);
+
+  /*!
    * \brief Write a keepalive signal only.
    *
    * This signals the robot that the connection is still

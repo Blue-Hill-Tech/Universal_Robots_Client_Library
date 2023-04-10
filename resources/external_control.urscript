@@ -36,6 +36,7 @@ TRAJECTORY_RESULT_FAILURE = 2
 ZERO_FTSENSOR = 0
 SET_PAYLOAD = 1
 SET_TOOL_VOLTAGE = 2
+RESET_REVOLUTION_COUNTER = 3
 SCRIPT_COMMAND_DATA_DIMENSION = 5
 
 #Global variables are also showed in the Teach pendants variable list
@@ -233,6 +234,9 @@ thread script_commands():
       elif command == SET_TOOL_VOLTAGE:
         tool_voltage = raw_command[2] / MULT_jointstate
         set_tool_voltage(tool_voltage)
+      elif command == RESET_REVOLUTION_COUNTER:
+        ref_joint = raw_command[2] / MULT_jointstate
+        reset_revolution_counter(qNear=[0.0, 0.0, 0.0, 0.0, 0.0, ref_joint])
       end
     end
   end

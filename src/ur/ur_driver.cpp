@@ -312,6 +312,22 @@ bool UrDriver::setToolVoltage(const ToolVoltage voltage)
   }
 }
 
+bool UrDriver::resetRevolutionCounter(const double reference_revolution_joint)
+{
+  if (script_command_interface_->clientConnected())
+  {
+    return script_command_interface_->resetRevolutionCounter(reference_revolution_joint);
+  }
+  else
+  {
+    URCL_LOG_WARN("Script command interface is not running. Falling back to sending plain script code. On e-Series "
+                  "robots this will only work, if the robot is in remote_control mode.");
+    std::stringstream cmd;
+    cmd << "sec setup():" << std::endl << " reset_revolution_counter(qNear=[0.0, 0.0, 0.0, 0.0, 0.0, " << reference_revolution_joint << "])" << std::endl << "end";
+    return sendScript(cmd.str());
+  }
+}
+
 bool UrDriver::writeKeepalive()
 {
   vector6d_t* fake = nullptr;
