@@ -201,6 +201,17 @@ bool ScriptCommandInterface::endToolContact()
   uint8_t* b_pos = buffer;
 
   int32_t val = htobe32(toUnderlying(ScriptCommand::END_TOOL_CONTACT));
+}
+
+bool ScriptCommandInterface::resetRevolutionCounter(const double reference_revolution_joint)
+{
+  const int message_length = 2;
+  uint8_t buffer[sizeof(int32_t) * MAX_MESSAGE_LENGTH];
+  uint8_t* b_pos = buffer;
+  int32_t val = htobe32(toUnderlying(ScriptCommand::RESET_REVOLUTION_COUNTER));
+  b_pos += append(b_pos, val);
+
+  val = htobe32(reference_revolution_joint * MULT_JOINTSTATE);
   b_pos += append(b_pos, val);
 
   // writing zeros to allow usage with other script commands
