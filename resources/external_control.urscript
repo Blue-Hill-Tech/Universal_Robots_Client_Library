@@ -385,6 +385,7 @@ while keepalive > 0 and control_mode > MODE_STOPPED:
     elif control_mode == MODE_FREEDRIVE:
       if params_mult[2] == FREEDRIVE_MODE_START:
         freedrive_mode()
+        sync()
         textmsg("ExternalControl: Entering freedrive")
       elif params_mult[2] == FREEDRIVE_MODE_STOP:
         end_freedrive_mode()
