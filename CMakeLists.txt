@@ -46,6 +46,7 @@ add_library(urcl SHARED
     src/rtde/rtde_writer.cpp
     src/default_log_handler.cpp
     src/log.cpp
+    src/helpers.cpp
 )
 add_library(ur_client_library::urcl ALIAS urcl)
 target_compile_options(urcl PRIVATE -Wall -Wextra -Wno-unused-parameter)
@@ -101,7 +102,7 @@ install(FILES package.xml DESTINATION share/${PROJECT_NAME})
 
 #### Begin import ####
 # Imported from ros-industrial/ros_industrial_cmake_boilerplate
-# https://github.com/ros-industrial/ros_industrial_cmake_boilerplate/blob/master/ros_industrial_cmake_boilerplate/cmake/cmake_tools.cmake
+# https://github.com/ros-industrial/ros_industrial_cmake_boilerplate/blob/59b86df662/ros_industrial_cmake_boilerplate/cmake/cmake_tools.cmake
 # Copyright (C) 2018 by George Cave - gcave@stablecoder.ca
 # Copyright (c) 2020, Southwest Research Institute
 # Licensed under Apache-2.0 license
