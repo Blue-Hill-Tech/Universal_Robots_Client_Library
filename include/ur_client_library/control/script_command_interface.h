@@ -194,7 +194,7 @@ private:
   };
 
   bool client_connected_;
-  static const int MAX_MESSAGE_LENGTH = 26;
+  static const int MAX_MESSAGE_LENGTH = 28;
 
   std::function<void(ToolContactResult)> handle_tool_contact_result_;
 };
