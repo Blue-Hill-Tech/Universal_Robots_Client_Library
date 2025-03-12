@@ -361,7 +361,8 @@ bool UrDriver::setToolVoltage(const ToolVoltage voltage)
 }
 
 bool UrDriver::startForceMode(const vector6d_t& task_frame, const vector6uint32_t& selection_vector,
-                              const vector6d_t& wrench, const unsigned int type, const vector6d_t& limits)
+                              const vector6d_t& wrench, const unsigned int type, const vector6d_t& limits,
+                              double damping_factor, double gain_scaling_factor)
 {
   // Test that the type is either 1, 2 or 3.
   switch (type)
@@ -389,7 +390,7 @@ bool UrDriver::startForceMode(const vector6d_t& task_frame, const vector6uint32_
 
   if (script_command_interface_->clientConnected())
   {
-    return script_command_interface_->startForceMode(&task_frame, &selection_vector, &wrench, type, &limits);
+    return script_command_interface_->startForceMode(&task_frame, &selection_vector, &wrench, type, &limits, damping_factor, gain_scaling_factor);
   }
   else
   {

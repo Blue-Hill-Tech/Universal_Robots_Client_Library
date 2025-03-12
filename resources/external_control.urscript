@@ -288,6 +288,13 @@ thread script_commands():
         force_type = raw_command[20] / MULT_jointstate
         force_limits = [raw_command[21] / MULT_jointstate, raw_command[22] / MULT_jointstate, raw_command[23] / MULT_jointstate, raw_command[24] / MULT_jointstate, raw_command[25] / MULT_jointstate, raw_command[26] / MULT_jointstate]
         set_tcp(task_frame)
+        force_mode_set_damping(raw_command[27] / MULT_jointstate)
+        # Check whether script is running on CB3 or e-series. Gain scaling can only be set on e-series robots.
+        # step time = 0.008: CB3 robot
+        # Step time = 0.002: e-series robot
+        if (get_steptime() < 0.008):
+          force_mode_set_gain_scaling(raw_command[28] / MULT_jointstate)
+        end
         sync()
         force_mode(get_actual_tcp_pose(), selection_vector, wrench, force_type, force_limits)
         textmsg("ExternalControl: Entering Force Mode")
