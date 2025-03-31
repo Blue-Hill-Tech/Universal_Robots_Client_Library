@@ -110,7 +110,7 @@ bool ScriptCommandInterface::startForceMode(const vector6d_t* task_frame, const 
                                             const vector6d_t* wrench, const unsigned int type, const vector6d_t* limits,
                                             double damping_factor, double gain_scaling_factor)
 {
-  const int message_length = 28;
+  const int message_length = 26;
   uint8_t buffer[sizeof(int32_t) * MAX_MESSAGE_LENGTH];
   uint8_t* b_pos = buffer;
 
